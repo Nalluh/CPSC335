@@ -86,8 +86,7 @@ if (tempInput[i] == 'b' || tempInput[i] == 'm' || tempInput[i] == 'c' || tempInp
     tempTest = cityOptionsArray[k];
     if(tempTest[0] == firstLetter)
     {
-           //cout << tempTest << " " << firstLetter << endl;
-        test = true;
+        test = true;    // test if word is valid 
       break;
      }
         }
@@ -96,28 +95,27 @@ if (tempInput[i] == 'b' || tempInput[i] == 'm' || tempInput[i] == 'c' || tempInp
         secondIndex = i;
         for(int p = 0; p < tempTest.length(); p++)
         {
-            if(tempTest[p] == tempInput[secondIndex])
+            if(tempTest[p] == tempInput[secondIndex]) // compare original string to words
             {
-                //cout << tempTest[p] << " " << p << endl;
-                if(tempTest[p] == 'c' && tempInput[secondIndex+1] == 'o') 
-                {
-                    tempTest = "corona";
-                }
-                final += tempTest[p];
-                secondIndex++;
+                if(tempTest[p] == 'c' && tempInput[secondIndex+1] == 'o') // clovis and corona both start with c
+                {                                                         // clovis comes first when checking first chat
+                    tempTest = "corona";                                  // so we check if char after c is o if so
+                }                                                         // we update our test string to be corona
+                final += tempTest[p];   //adding chars together
+                secondIndex++; //variable used to update i
             }
             else{
-                break;
+                break; // if chars dont match stop comparing break out  
             }
         }
-        if(final == tempTest)
-        {
-            foundCity.push_back(final);
-            output_array.push_back(i);
-            final ="";
+        if(final == tempTest) // if final string matches city in our array
+        {                     // city has been found 
+            foundCity.push_back(final);     // adds city name to vector
+            output_array.push_back(i);      // adds index # to array 
+            final ="";                      // resets final for next word 
         }
         else{
-            final ="";
+            final =""; // if chars dont match reset final to keep looking 
         }
        }
     
